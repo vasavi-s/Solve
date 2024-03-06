@@ -20,6 +20,9 @@ int main()
     cin>>n>>sum;
     int arr[n];
     for(int i=0;i<n;i++)cin>>arr[i];
+
+
+    // method one O(n^2)
     bool flag=false;
     int i,ind2;
     for(i=0;i<n-1;i++)
@@ -39,5 +42,25 @@ int main()
     
     if(flag) cout<<"Sum found between indexes "<<i<<" and "<<ind2;
     else cout<<"No subarray found";
+    //end
+
+    //method 2 O(n)
+     bool flag=false;
+    int i=0,curr_sum,j;
+    for( j=i;j<size;j++){
+        curr_sum+=arr[j];
+      if(sum==curr_sum) break;
+      else if(curr_sum>sum){
+          while(i<j){
+              curr_sum-=arr[i++];
+              if(curr_sum==sum){ flag=true; break;}
+          }
+          break;
+      }
+    }
+    if(flag)
+    cout<<"Sum found between indexes "<<i<<" and "<<j;
+    else cout<<"No subarray found";
+    //end
     return 0;
 }
